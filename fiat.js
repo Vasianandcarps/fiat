@@ -13,17 +13,16 @@ let fiat = {
     this.started = true;
   },
   stop: function () {
-    if (this.fuel <= 0) {
-      alert("Сначала заправте автомобиль!");
-    } else {
-      this.started = false;
-    }
+    this.started = false;
   },
   drive: function () {
-    if (this.started) {
+    if (this.started && this.fuel > 0) {
       alert("Бип!");
       this.fuel -= this.consum;
       alert("У меня в баке " + this.fuel + " литров бензина!");
+    } else if (this.fuel <= 0) {
+      this.stop;
+      alert("Сначала заправте автомобиль!");
     } else {
       alert("Сначала запустите двигатель!");
     }
@@ -45,12 +44,8 @@ fiat.addFuel();
 fiat.start();
 fiat.drive();
 fiat.drive();
-fiat.stop();
+fiat.drive();
 fiat.addFuel();
 fiat.showFuel();
 
 alert(fiat);
-
-// } else if (this.fuel <= 0) {
-//   alert("Сначала заправте автомобиль!");
-//   fiat.addFuel();
